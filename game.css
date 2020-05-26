@@ -1,0 +1,90 @@
+body{
+    background: url(https://wallpoper.com/images/00/44/61/45/empty-room_00446145.jpg) no-repeat center center fixed;
+background-position:center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+
+@media (max-width: 960px) {
+    .loseImg {
+        width: 50%;
+        border-radius: 10px;
+    }
+}
+
+.loseImg {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.screenDiv{
+    border-bottom: 2px solid;
+    border-radius: 20px 20px 0 0;
+    padding-top: 1px;
+    width: 303px;
+    height: 150px;
+        background-color: darkgrey; 
+
+}
+.screen {
+    background-color: black;
+    color: white;
+    margin: 0 auto;
+    margin-top: 40px;
+    width: 120px;
+    height: 80px;
+    border-radius: 5px;
+    font-size: 50px;
+
+}
+
+.gameDiv{
+    text-align: center;
+    background-color: grey; 
+    width: 303px;
+    height: 300px;
+    border-radius: 20px;
+    margin: 0 auto;
+    border: 2px solid black;
+     margin-right: 30px;
+    float:left; /* add this */
+}
+
+.centerP{
+    text-align: center;
+}
+
+.buttons{
+    margin-top: 50px;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 960px) {
+    .logo {
+        width: 200%;
+    }
+}
+
+.logo {
+    width: 100%;
+}
+
+.desktop-count{
+    width: 150px; 
+    float: right;
+
+}
+
+@media (max-width: 960px) {
+    .desktop-count{
+        width: 50px; 
+        position: relative;
+        margin-right: 80px;
+        transform: rotate(90deg);
+    }
+}
+

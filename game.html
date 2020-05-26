@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Memory Game</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="initial-scale=0.8, user-scalable=0">
+        <link rel="stylesheet" type="text/css" href="./game.css">
+
+    </head> 
+
+    <div style="  width:500px;
+
+         margin: 0 auto;
+         margin-top: 80px;
+         overflow: hidden;">
+
+
+        <div id="game" class="gameDiv">
+
+            <div class="screenDiv">
+
+                <div class="screen" id="nbScreen"></div> 
+
+            </div>
+            <div>
+                <img  class="buttons" id="1" >
+                <img class="buttons"  id="2" >
+
+                <img class="buttons" id="3" >
+                <img class="buttons" id="4" >
+            </div>
+
+        </div> 
+
+        <img   id="count"  ><br>
+
+    </div>
+
+    <div style="
+         width: 450px;
+         margin: 0 auto;
+         margin-top: 20px;
+         overflow: hidden;">
+        <div  id="result" style=" text-align: center; background-color: grey;  border-radius: 20px;  margin: 0 auto; padding: 50px; width: 50%;">
+            <p id="resultLose" style="margin: 0 auto;" class="centerP" ><img class="loseImg" src="explosion-giphy.webp" alt="WebP rules." /></p>
+            <p id="resultWin" class="centerP" >Félicitations, vous avez réussi</p>
+
+            <button id="replay" style="margin: 0 auto; padding: 32px 30px; border-radius: 10px;" onclick="initGame()" >Rejouer</button>
+        </div>
+    </div>
+    <p class="centerP"> <button style=" padding: 22px 20px; border-radius: 10px; text-align: center;"><a style="text-decoration: none; color: black; margin: 0 auto;" href="index.html" class="button">Retourner à l'écran d'accueil</a></button></p>
+
+        <script type="text/javascript" src="./main.js"></script>
+
+</html>
