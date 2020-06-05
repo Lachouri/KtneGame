@@ -104,7 +104,7 @@ result.style.display = "none";
 replay.style.display = "none";
 count.style.display = "block";
 
-count.setAttribute("src", "count-empty.png");
+count.setAttribute("src", "img/memoryGame/count-empty.png");
 
 
 
@@ -128,7 +128,7 @@ function initGame() {
     replay.style.display = "none";
     result.style.display = "none";
     count.style.display = "block";
-    count.setAttribute("src", "count-empty.png");
+    count.setAttribute("src", "img/memoryGame/count-empty.png");
 
 
     game.style.display = "block";
@@ -159,7 +159,7 @@ function clickAction(button) {
     if (winnerValues.index === button) {
         winHistory.push(winnerValues);
         winCount += 1;
-        count.setAttribute("src", "count-empty.png");
+        count.setAttribute("src", "img/memoryGame/count-empty.png");
 
       //  console.log("winCount", winCount);
         if (checkWin()) {
@@ -173,19 +173,19 @@ function clickAction(button) {
             gameByStep(step);
             switch (winCount) {
                 case 1:
-                    count.setAttribute("src", "count-1.png");
+                    count.setAttribute("src", "img/memoryGame/count-1.png");
                     break;
                 case 2:
-                    count.setAttribute("src", "count-2.png");
+                    count.setAttribute("src", "img/memoryGame/count-2.png");
                     break;
                 case 3:
-                    count.setAttribute("src", "count-3.png");
+                    count.setAttribute("src", "img/memoryGame/count-3.png");
                     break;
                 case 4:
-                    count.setAttribute("src", "count-4.png");
+                    count.setAttribute("src", "img/memoryGame/count-4.png");
                     break;
                 case 5:
-                    count.setAttribute("src", "count-full.png");
+                    count.setAttribute("src", "img/memoryGame/count-full.png");
                     break;
             }
 
@@ -234,16 +234,16 @@ function gameByStep(step) {
 
     document.getElementById("nbScreen").innerHTML = nbScreen;
     button1.innerHTML = stepButtonsValues[0];
-    button1.setAttribute("src", "button" + stepButtonsValues[0] + ".png")
+    button1.setAttribute("src", "img/memoryGame/button" + stepButtonsValues[0] + ".png")
 
     button2.innerHTML = stepButtonsValues[1];
-    button2.setAttribute("src", "button" + stepButtonsValues[1] + ".png")
+    button2.setAttribute("src", "img/memoryGame/button" + stepButtonsValues[1] + ".png")
 
     button3.innerHTML = stepButtonsValues[2];
-    button3.setAttribute("src", "button" + stepButtonsValues[2] + ".png")
+    button3.setAttribute("src", "img/memoryGame/button" + stepButtonsValues[2] + ".png")
 
     button4.innerHTML = stepButtonsValues[3];
-    button4.setAttribute("src", "button" + stepButtonsValues[3] + ".png")
+    button4.setAttribute("src", "img/memoryGame/button" + stepButtonsValues[3] + ".png")
    // console.log("winCount", winCount);
 
 

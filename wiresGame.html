@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Wire game</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=0.8, user-scalable=0">
+    <link rel="stylesheet" type="text/css" href="./wiresGame.css">
+
+</head>
+<div class="container">
+
+
+    <div  id="game" class="gameDiv">
+
+        <div class="screenDiv">
+            <p>Serial number</p>
+            <p class="screen" id="serial"></p>
+
+        </div>
+        <div class="wires">
+            <img id="1">
+            <img id="2">
+            <img id="3">
+            <img id="4">
+            <img id="5">
+            <img id="6">
+
+        </div>
+    </div>
+   
+ 
+  
+    <div style="width: 450px; margin: 0 auto; margin-top: 20px; 
+    grid-column: 3;
+    ">
+        <div id="result" style=" text-align: center; background-color: grey;  border-radius: 20px;  margin: 0 auto; padding: 50px; width: 50%;">
+            <p id="resultLose" style="margin: 0 auto;" class="centerP">
+                <img class="loseImg" src="img/memoryGame/explosion-giphy.webp" alt="WebP rules." /></p>
+            <p id="resultWin" class="centerP">Félicitations, vous avez réussi</p>
+
+            <button id="replay" style="margin: 0 auto; padding: 32px 30px; border-radius: 10px;"
+                onclick="initGame()">Rejouer</button>
+        </div> 
+    </div>
+    <p class="centerP" style="grid-column: 2;">
+        <button style="  padding: 22px 20px; border-radius: 10px; text-align: center;">
+            <a style="text-decoration: none; color: black; margin: 0 auto;" href="index.html" class="button">Retourner à
+                l'écran d'accueil</a>
+        </button>
+    </p>
+
+</div>
+ 
+
+
+</body>
+
+<script type="text/javascript" src="./wiresGame.js"></script>
+
+</html>
