@@ -136,22 +136,18 @@ function initGame() {
 }
 
 button1.onclick = function () {
-    console.log("button index value", {value: button1.innerHTML, index: 1});
     clickAction(1);
 }
 
 
 button2.onclick = function () {
-    console.log("button index value", {value: button2.innerHTML, index: 2});
     clickAction(2);
 }
 
 button3.onclick = function () {
-    console.log("button index value", {value: button3.innerHTML, index: 3});
     clickAction(3);
 }
 button4.onclick = function () {
-    console.log("button index value", {value: button4.innerHTML, index: 4});
     clickAction(4);
 }
 
@@ -161,7 +157,6 @@ function clickAction(button) {
         winCount += 1;
         count.setAttribute("src", "img/memoryGame/count-empty.png");
 
-        //  console.log("winCount", winCount);
         if (checkWin()) {
             resultWin.style.display = "block";
             replay.style.display = "block";
@@ -244,11 +239,9 @@ function gameByStep(step) {
 
     button4.innerHTML = stepButtonsValues[3];
     button4.setAttribute("src", "img/memoryGame/button" + stepButtonsValues[3] + ".png")
-    // console.log("winCount", winCount);
 
 
     const currentObject = gameEngine[step][nbScreen - 1];
-    console.log("game guide data", currentObject);
     if (currentObject.nb) {
         winnerValues.index = stepButtonsValues.indexOf(currentObject.nb) + 1;
         winnerValues.number = currentObject.nb;
@@ -259,13 +252,11 @@ function gameByStep(step) {
     }
     if (currentObject.previousNb) {
         const historyNbValue = winHistory[currentObject.step - 1];
-        console.log("historyNbValue", historyNbValue);
         winnerValues.index = stepButtonsValues.indexOf(historyNbValue.number) + 1;
         winnerValues.number = historyNbValue.number;
     }
     if (currentObject.previousNbIndex) {
         const historyNbValue = winHistory[currentObject.step - 1];
-        console.log("historyNbIndexValue", historyNbValue);
         winnerValues.index = historyNbValue.index;
         winnerValues.number = stepButtonsValues[historyNbValue.index - 1];
     }
