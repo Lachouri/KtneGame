@@ -241,30 +241,28 @@ if (nbOfWires.nbWires >= 6) {
 }
 
 wire1.onclick = function () {
-    if (gameEnded === true) return
+    if (gameEnded === true)
+        return
     wire1.setAttribute("src", `img/wiresGame/${selectedCase.disposition[0]}_cut.png`)
     const result = checkWin(0)
     if (result) {
         resultBox.style.display = "block";
         resultWin.style.display = "block";
-    }
-
-    else {
+    } else {
         resultBox.style.display = "block";
         resultLose.style.display = "block";
     }
 }
 
 wire2.onclick = function () {
-    if (gameEnded === true) return
+    if (gameEnded === true)
+        return
     wire2.setAttribute("src", `img/wiresGame/${selectedCase.disposition[1]}_cut.png`)
     const result = checkWin(1)
     if (result) {
         resultBox.style.display = "block";
         resultWin.style.display = "block";
-    }
-
-    else {
+    } else {
         resultBox.style.display = "block";
         resultLose.style.display = "block";
     }
@@ -272,15 +270,14 @@ wire2.onclick = function () {
 }
 
 wire3.onclick = function () {
-    if (gameEnded === true) return
+    if (gameEnded === true)
+        return
     wire3.setAttribute("src", `img/wiresGame/${selectedCase.disposition[2]}_cut.png`)
     const result = checkWin(2)
     if (result) {
         resultBox.style.display = "block";
         resultWin.style.display = "block";
-    }
-
-    else {
+    } else {
         resultBox.style.display = "block";
         resultLose.style.display = "block";
     }
@@ -288,45 +285,42 @@ wire3.onclick = function () {
 }
 
 wire4.onclick = function () {
-    if (gameEnded === true) return
+    if (gameEnded === true)
+        return
     wire4.setAttribute("src", `img/wiresGame/${selectedCase.disposition[3]}_cut.png`)
     const result = checkWin(3)
     if (result) {
         resultBox.style.display = "block";
         resultWin.style.display = "block";
-    }
-
-    else {
+    } else {
         resultBox.style.display = "block";
         resultLose.style.display = "block";
     }
 
 }
 wire5.onclick = function () {
-    if (gameEnded === true) return
+    if (gameEnded === true)
+        return
     wire5.setAttribute("src", `img/wiresGame/${selectedCase.disposition[4]}_cut.png`)
     const result = checkWin(4)
     if (result) {
         resultBox.style.display = "block";
         resultWin.style.display = "block";
-    }
-
-    else {
+    } else {
         resultBox.style.display = "block";
         resultLose.style.display = "block";
     }
 
 }
 wire6.onclick = function () {
-    if (gameEnded === true) return
+    if (gameEnded === true)
+        return
     wire6.setAttribute("src", `img/wiresGame/${selectedCase.disposition[5]}_cut.png`)
     const result = checkWin(5)
     if (result) {
         resultBox.style.display = "block";
         resultWin.style.display = "block";
-    }
-
-    else {
+    } else {
         resultBox.style.display = "block";
         resultLose.style.display = "block";
     }
@@ -361,3 +355,35 @@ function initGame() {
     document.location.reload(true);
 
 }
+
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 10) {
+            display.classList.add("blink");
+        }
+
+        if (timer < 0) {
+            gameEnded = true
+            display.classList.remove("blink");
+
+            timer = 0;
+            resultBox.style.display = "block";
+            resultLose.style.display = "block";
+        }
+    }, 1000);
+}
+
+window.onload = function () {
+    var oneMinute = 60,
+            display = document.querySelector('#time');
+    startTimer(oneMinute, display);
+};

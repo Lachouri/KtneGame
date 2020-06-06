@@ -161,7 +161,7 @@ function clickAction(button) {
         winCount += 1;
         count.setAttribute("src", "img/memoryGame/count-empty.png");
 
-      //  console.log("winCount", winCount);
+        //  console.log("winCount", winCount);
         if (checkWin()) {
             resultWin.style.display = "block";
             replay.style.display = "block";
@@ -244,7 +244,7 @@ function gameByStep(step) {
 
     button4.innerHTML = stepButtonsValues[3];
     button4.setAttribute("src", "img/memoryGame/button" + stepButtonsValues[3] + ".png")
-   // console.log("winCount", winCount);
+    // console.log("winCount", winCount);
 
 
     const currentObject = gameEngine[step][nbScreen - 1];
@@ -270,3 +270,38 @@ function gameByStep(step) {
         winnerValues.number = stepButtonsValues[historyNbValue.index - 1];
     }
 }
+
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 10) {
+            display.classList.add("blink");
+        }
+
+        if (timer < 0) {
+            timer = 0;
+            display.classList.remove("blink");
+            winCount = 0;
+            resultLose.style.display = "block";
+            replay.style.display = "block";
+            result.style.display = "block";
+            count.style.display = "none";
+
+            game.style.display = "none";
+        }
+    }, 1000);
+}
+
+window.onload = function () {
+    var oneMinute = 60,
+            display = document.querySelector('#time');
+    startTimer(oneMinute, display);
+};

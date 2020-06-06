@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
 body {
     background: url(img/empty-room.jpg) no-repeat center center fixed;
     background-position: center center;
@@ -34,7 +36,6 @@ body {
     margin: 0 auto;
     margin-top: 40px;
     width: 120px;
-    height: 80px;
     border-radius: 5px;
     font-size: 50px;
 }
@@ -83,4 +84,17 @@ body {
         margin-right: 80px;
         transform: rotate(90deg);
     }
+}
+
+#time {
+    font-size: 35px;
+    font-family: 'Orbitron', sans-serif;
+}
+.blink {
+  animation: blinker 0.7s linear infinite;
+  color: red;
+}
+
+@keyframes blinker {  
+  50% { opacity: 0; }
 }
