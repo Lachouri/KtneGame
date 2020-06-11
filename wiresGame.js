@@ -1,3 +1,9 @@
+// This array contains the engine or rules of the game. 
+// Each object contains a table that corresponds to all possible cases of wire arrangement.
+// It indicates the rule to be followed and the wire to be cut. 
+// Theses rules can be changed at any time. 
+//  In certain cases, it is required to check if the serial number is even or odd. 
+
 const gameEngine = [
     {
         nbWires: 3,
@@ -52,7 +58,7 @@ const gameEngine = [
                     "red"
                 ],
                 toCut: 4,
-                serial: "odd"
+                serial: "odd" // If it says "odd", then the number will be odd. Same for "even"
             },
             {
                 ruleDescription: "If last wire is yellow and no red wire, cut first wire",
@@ -200,8 +206,11 @@ const gameEngine = [
     }
 ]
 
-const nbOfWires = gameEngine[getRandomNumber(gameEngine.length)];
-const selectedCase = nbOfWires.cases[getRandomNumber(nbOfWires.cases.length)];
+// Here we generate a random number that will indicate the selected case in the game engine.  
+const nbOfWires = gameEngine[getRandomNumber(gameEngine.length)]; // The number of wires to generate 
+const selectedCase = nbOfWires.cases[getRandomNumber(nbOfWires.cases.length)]; // The case to select 
+let countdown;
+// Then we link the HTML and JS
 
 const wire1 = document.getElementById("1");
 const wire2 = document.getElementById("2");
@@ -215,20 +224,29 @@ const resultBox = document.getElementById("result");
 const resultLose = document.getElementById("resultLose");
 const resultWin = document.getElementById("resultWin");
 
+// We hide the part of the game that says "Win" or "Lose" and we display the game.
 resultLose.style.display = "none";
 resultWin.style.display = "none";
 resultBox.style.display = "none";
 game.style.display = "grid";
 
-
+// We generate three uncut wires, as the minimum amout of wires is 3.
 wire1.setAttribute("src", `img/wiresGame/${selectedCase.disposition[0]}_uncut.png`)
 wire2.setAttribute("src", `img/wiresGame/${selectedCase.disposition[1]}_uncut.png`)
 wire3.setAttribute("src", `img/wiresGame/${selectedCase.disposition[2]}_uncut.png`)
 
+// The game will  create a random number that will decide on the serial number's state.
 const getEvenOrOdd = Math.random() >= 0.5 ? "even" : "odd"
+
+// Then a serial number is displayed. If the case selected above requires a specific state, we generate it, otherwise we generate a totally random number.
 document.getElementById("serial").innerHTML = generateSerial(selectedCase.serial ? selectedCase.serial : getEvenOrOdd);
 
+// The variable gameEnded is set to false
 let gameEnded = false
+initializeTime(60)
+
+
+// We check how many wires will be needed for this game. 
 
 if (nbOfWires.nbWires >= 4) {
     wire4.setAttribute("src", `img/wiresGame/${selectedCase.disposition[3]}_uncut.png`)
@@ -240,15 +258,19 @@ if (nbOfWires.nbWires >= 6) {
     wire6.setAttribute("src", `img/wiresGame/${selectedCase.disposition[5]}_uncut.png`)
 }
 
+
+/**
+ * For each wire
+ */
 wire1.onclick = function () {
-    if (gameEnded === true)
+    if (gameEnded === true) // We stop the game
         return
-    wire1.setAttribute("src", `img/wiresGame/${selectedCase.disposition[0]}_cut.png`)
-    const result = checkWin(0)
-    if (result) {
+    wire1.setAttribute("src", `img/wiresGame/${selectedCase.disposition[0]}_cut.png`) // We change the image and put a cut wire instead
+    const result = checkWin(0) // We check if this wire is the right one (here 0 is the index of the wire )
+    if (result) { // If the user won, we display the "Win box"
         resultBox.style.display = "block";
         resultWin.style.display = "block";
-    } else {
+    } else { // Otherwise we display the "Lose box"
         resultBox.style.display = "block";
         resultLose.style.display = "block";
     }
@@ -327,38 +349,62 @@ wire6.onclick = function () {
 
 }
 
+
+/**
+ * When the function is called, the game is ended.  It checks if the wireIndex passed in the function is the correct one.
+ * @param {number} wireIndex
+ * @returns {boolean} 
+ */
 function checkWin(wireIndex) {
     gameEnded = true
-
-    if (wireIndex === selectedCase.toCut - 1) {
+    clearInterval(countdown);
+    if (wireIndex === selectedCase.toCut - 1) { // We do -1 because the 'toCut' is not an index, but a number. 
         return true
-
     }
-
+return false
 }
 
+
+/**
+ *  This functions returns a random number smaller than the given maxNb
+ * @param {number} maxNb
+ * @returns {number} 
+ */
 function getRandomNumber(maxNb) {
     return Math.floor(Math.random() * maxNb)
 }
 
-function generateSerial(state) {
 
-    let nb = getRandomNumber(4499) * 2 + 1000
+/**
+ * This functions generate a serial number. Here we want a 4 digits number. The functions gets a state of "odd" or "even".
+ * @param {string} state
+ * @returns {number}
+ */
+function generateSerial(state) {
+//We call the function getRandomNumber and we give it the maxNb of 4499
+    let nb = getRandomNumber(4499) * 2 + 1000   // This will return  a maximum of 9998
     if (state === "odd") {
         nb = nb - 1
     }
     return nb
 }
 
-
+/**
+ * This functions reloads the page in oder to reload the game
+ */
 function initGame() {
     document.location.reload(true);
-
 }
 
+/**
+ * This function generates the timer. It requires a duration and "display"
+ * @param {number} duration
+ * @param {string} display
+ */
 function startTimer(duration, display) {
     var timer = duration, minutes, seconds;
-    setInterval(function () {
+
+    countdown = setInterval(function () {
         minutes = parseInt(timer / 60, 10)
         seconds = parseInt(timer % 60, 10);
 
@@ -368,22 +414,26 @@ function startTimer(duration, display) {
         display.textContent = minutes + ":" + seconds;
 
         if (--timer < 10) {
-            display.classList.add("blink");
+            display.classList.add("blink"); // If the time is below 10 seconds, the timer will start blinking 
         }
 
-        if (timer < 0) {
+        if (timer < 0) { // If the time reaches 0, the game stops, the timer stops blinking and the result is displayed 
             gameEnded = true
             display.classList.remove("blink");
-
-            timer = 0;
+            clearInterval(countdown);
             resultBox.style.display = "block";
             resultLose.style.display = "block";
         }
     }, 1000);
 }
 
-window.onload = function () {
-    var oneMinute = 60,
+/**
+ * This function specifies the duration of the countdown, and where to display it
+ * @param {number} minutes
+ */
+function initializeTime(minutes) {
+    const oneMinute = minutes,
             display = document.querySelector('#time');
-    startTimer(oneMinute, display);
-};
+    startTimer(oneMinute, display); // Then it calls the fonction above
+}
+;
